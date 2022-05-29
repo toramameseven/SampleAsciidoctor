@@ -1,0 +1,25 @@
+{
+  "name": "asciidoctor-sample",
+  "version": "0.0.1",
+  "description": "AsciidoctorSamples",
+  "watch": {
+    "convert": "./src/%npm_package_config_adocFile%.adoc"
+  },
+  "scripts": {
+    "all": "run-p watch live",
+    "live": "live-server ./out --open=%npm_package_config_adocFile%.html",
+    "watch": "npm-watch",
+    "convert": "asciidoctor -D ./out ./src/%npm_package_config_adocFile%.adoc",
+    "postconvert":"npm run fileCopy",
+    "pdf": "asciidoctor-web-pdf ./src/%npm_package_config_adocFile%.adoc -o ./out/%npm_package_config_adocFile%.pdf",
+    "fileCopy": "node -e \"require('fs-extra').copySync('./src/image', './out/image')\""
+  },
+  "config": {
+    "adocFile": "adoc-markdown-textile"
+  },
+  "author": "toramameseven",
+  "license": "MIT",
+  "devDependencies": {
+    "fs-extra": "^10.1.0"
+  }
+}

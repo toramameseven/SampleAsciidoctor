@@ -1,0 +1,541 @@
+= AsciiDoc Versus Markdown
+
+== Comparison by example
+
+The following table shows the AsciiDoc syntax as it compares to Markdown.
+Since AsciiDoc supports a broader range of syntax than Markdown, this side-by-side comparison focuses mainly on areas where the syntax overlaps.
+
+[#asciidoc-vs-markdown]
+.AsciiDoc language features as they compare to Markdown
+[cols="2,3,3,3"]
+|===
+|Language Feature |Markdown |AsciiDoc |Textile 
+
+// bold
+a|*bold*
+
+a|
+[source,markdown]
+----
+**bold**
+----
+a|
+[source,asciidoc]
+----
+*bold*
+----
+a|
+[source,textile]
+----
+*bold*
+----
+
+// bold
+a|*Bold (constrained)*
+
+a|
+[source,markdown]
+----
+**bold**
+----
+a|
+[source,asciidoc]
+----
+*bold*
+----
+a|
+[source,textile]
+----
+*bold*
+----
+
+
+// italic
+a|_italic_
+a|
+[source,markdown]
+----
+*italic*
+----
+a|
+[source,asciidoc]
+----
+_italic_
+----
+a|
+[source,textile]
+----
+_italic_
+----
+
+// Italic (constrained) 
+a| _Italic (constrained)_
+a|
+[source,markdown]
+----
+*italic*
+----
+a|
+[source,asciidoc]
+----
+_italic_
+----
+a|
+[source,textile]
+----
+_italic_
+----
+
+// Italic (unconstrained)
+a| __i__talic (unconstrained)
+a|_n/a_
+a|
+[source,asciidoc]
+----
+__i__talic
+----
+a|
+[source,textile]
+----
+xxxx
+----
+
+|`monospace` (constrained)
+a|
+[source,markdown]
+----
+`monospace`
+----
+a|
+[source,asciidoc]
+----
+`monospace`
+----
+a|
+[source,textile]
+----
+@monospace@
+----
+
+//
+a|``m``onospace (unconstrained)
+a|
+[source,markdown]
+----
+`m`onospace
+----
+a|
+[source,asciidoc]
+----
+``m``onospace
+----
+a|
+[source,textile]
+----
+@monospace@
+----
+//
+a|https://asciidoctor.org[Link with label]
+a|
+[source,markdown]
+----
+[Link with label](https://asciidoctor.org)
+----
+a|
+[source,asciidoc]
+----
+https://asciidoctor.org[Link with label]
+----
+a|
+[source,textile]
+----
+"Link with label":https://asciidoctor.org
+----
+
+
+|Relative link
+a|
+[source,markdown]
+----
+[directory structure](../structure)
+----
+a|
+[source,asciidoc]
+----
+link:../structure[directory structure]
+----
+
+a|
+[source,textile]
+----
+xxxx
+----
+
+//
+|link:{site-url}/assets/mydoc.pdf[FileLink]
+a|
+[source,markdown]
+----
+[FileLink]({% raw %}{{ site.url }}{% endraw %}/assets/mydoc.pdf)
+----
+a|
+[source,asciidoc]
+----
+link:{site-url}/assets/mydoc.pdf[FileLink]
+----
+a|
+[source,textile]
+----
+xxxx
+----
+
+//
+|<<Cross reference>>
+|_n/a_
+a|
+[source,asciidoc]
+----
+<<Cross reference>>
+----
+a|
+[source,textile]
+----
+xxxx
+----
+
+//InlineImage
+|image:logo.png[InlineImage]
+a|
+[source,markdown]
+----
+![InlineImage](/images/logo.png)
+----
+a|
+[source,asciidoc]
+----
+image:logo.png[InlineImage]
+----
+a|
+[source,textile]
+----
+!logo.png!
+----
+
+// Block Image
+a|image::logo.png[BlockImage]
+a|_n/a_
+a|
+[source,asciidoc]
+----
+image::logo.png[BlockImage]
+----
+a|
+[source,textile]
+----
+xxxx
+----
+
+// Section heading
+a|== Heading 2
+a|
+[source,markdown]
+----
+## Heading 2
+----
+a|
+[source,asciidoc]
+----
+== Heading 2
+----
+a|
+[source,textile]
+----
+h2. Heading 2
+----
+
+// block quaoted
+a|
+____
+Quoted text.
+Another paragraph in quote.
+____
+a|
+[source,markdown]
+----
+> Quoted text.
+>
+> Another paragraph in quote.
+----
+a|
+[source,asciidoc]
+----
+____
+Quoted text.
+
+Another paragraph in quote.
+____
+----
+
+a|
+[source,textile]
+----
+bq. Quoted text.
+----
+
+// Code block*
+a|
+[source,java]
+----
+public class Person {
+}
+----
+a|
+[source,markdown]
+----
+```java
+public class Person {
+}
+```
+----
+a|
+[source,asciidoc]
+....
+[source,java]
+----
+public class Person {
+}
+----
+....
+a|
+[source,textile]
+----
+<pre><code class="java">
+public class Person {
+}
+</pre>
+----
+
+a|
+Unordered list
+
+* apples
+* oranges
+ ** temple
+ ** navel
+* bananas
+a|
+[source,markdown]
+----
+* apples
+* orange
+  * temple
+  * navel
+* bananas
+----
+a|
+[source,asciidoc]
+----
+* apples
+* oranges
+ ** temple
+ ** navel
+* bananas
+----
+a|
+[source,textile]
+----
+* apples
+* oranges
+** temple
+** navel
+* bananas
+----
+
+// 
+a|
+Ordered list
+
+. first
+. second
+. third
+a|
+[source,markdown]
+----
+1. first
+2. second
+3. third
+----
+a|
+[source,asciidoc]
+----
+. first
+. second
+. third
+----
+a|
+[source,textile]
+----
+# first
+# second
+# third
+----
+
+// Thematic break (aka horizontal rule)*
+a|
+'''
+a|
+[source,markdown]
+----
+***
+
+* * *
+
+---
+
+- - -
+
+___
+
+_ _ _
+----
+a|
+[source,asciidoc]
+----
+'''
+----
+a|
+[source,textile]
+----
+---
+----
+
+//Typographic (aka "`Smart`") Quotes
+a|One of Jekyll's best aspects is that it is "`blog aware`".
+|Enabled through an extension switch, but offer little control in how they are applied.
+a|
+[source,asciidoc]
+----
+One of Jekyll's best aspects is that it is "`blog aware`".
+----
+a|
+[source,textile]
+----
+xxxx
+----
+
+//
+|Document header
+a|
+.Slapped on as front matter
+[source,markdown]
+----
+---
+layout: docs
+title: Writing posts
+prev_section: defining-frontmatter
+next_section: creating-pages
+permalink: /docs/writing-posts/
+---
+----
+a|
+.Native support!
+[source,asciidoc]
+----
+= Writing posts
+:awestruct-layout: base
+:showtitle:
+:prev_section: defining-frontmatter
+:next_section: creating-pages
+----
+a|
+[source,textile]
+----
+xxxx
+----
+
+|Admonitions
+|_n/a_
+a|
+[source,asciidoc]
+----
+TIP: You can add line numbers to source listings by adding the word `numbered` in the attribute list after the language name.
+----
+a|
+[source,textile]
+----
+xxxx
+----
+
+// side ar
+a|.Lightweight Markup
+****
+Writing languages that let you type less and express more.
+****
+|_n/a_
+a|
+----
+.Lightweight Markup
+****
+Writing languages that let you type less and express more.
+****
+----
+a|
+[source,textile]
+----
+xxxx
+----
+
+// Block titles
+a|
+Block titles
+
+.Grocery list
+* Milk
+* Eggs
+* Bread
+|_n/a_
+a|
+----
+.Grocery list
+* Milk
+* Eggs
+* Bread
+----
+a|
+[source,textile]
+----
+xxxx
+----
+
+// include
+a|
+----
+\include::intro.adoc[]
+----
+|_n/a_
+a|
+[source,asciidoc]
+----
+\include::intro.adoc[]
+----
+a|
+[source,textile]
+----
+xxxx
+----
+
+// Custom CSS classes
+|Custom CSS classes
+|_n/a_
+a|
+[source,asciidoc]
+----
+[.path]_Gemfile_
+----
+a|
+[source,textile]
+----
+xxxx
+----
+|===
+

@@ -1,0 +1,24 @@
+= イメージの整列
+:docinfo: shared
+:imagesdir: ./image
+// :data-uri:
+
+== right
+
+
+.fig1
+image::./right.png[align="right"]
+
+== center
+
+.図4
+image::center.png[align="center"]
+
+== left
+
+.図3
+image::left.png[align="left"]
+
+
+
+
